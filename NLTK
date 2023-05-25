@@ -1,0 +1,107 @@
+pip3 install nltk
+Import nltk
+sudo pip install -U nltk
+sudo apt update
+sudo apt install python3-pip
+conda install -c anaconda nltk
+
+import nltk
+nltk.download()
+import nltk
+from nltk.stem import PorterStemmer
+word_stemmer = PorterStemmer()
+word_stemmer.stem('writing') //output:: 'write'
+word_stemmer.stem('eating') //output:: 'eat'
+
+**************** NLTK package ***********
+-----------[nltk.tokenize]------------
+(1)
+import nltk
+from nltk.tokenize import word_tokenize
+word_tokenize('Tutorialspoint.com provides high quality technical tutorials for free.')
+      //****  Output ****//
+      ['Tutorialspoint.com', 'provides', 'high', 'quality', 'technical', 'tutorials', 'for', 'free', '.']
+
+------------[TreebankWordTokenizer Class:]-------------
+(2)
+import nltk
+from nltk.tokenize import TreebankWordTokenizer
+Tokenizer_wrd = TreebankWordTokenizer()
+\Tokenizer_wrd.tokenize(
+   'Tutorialspoint.com provides high quality technical tutorials for free.'
+)
+    //****  Output ****//
+[
+   'Tutorialspoint.com', 'provides', 'high', 'quality', 
+   'technical', 'tutorials', 'for', 'free', '.'
+]
+
+
+(3)
+The most significant convention of a tokenizer is to separate contractions.
+For example, if we use word_tokenize() 
+module for this purpose,it will give the output as follows −
+
+Example
+import nltk
+from nltk.tokenize import word_tokenize
+word_tokenize('won’t')
+   //****  Output ****//
+   ['wo', "n't"]]
+
+(4)
+-------------- Word-Punkt-Tokenizer Class ----------------
+An alternative word tokenizer that splits all punctuation into separate tokens.
+Let us understand it with the following simple example −
+
+//  Example
+import nltk
+from nltk.tokenize import WordPunctTokenizer
+tokenizer = WordPunctTokenizer()
+tokenizer.tokenize(" I can't allow you to go home early")
+       //****  Output ****//
+       ['I', 'can', "'", 't', 'allow', 'you', 'to', 'go', 'home', 'early']
+       
+ (5)
+ ---------------Tokenizing text into sentences--------------
+       import nltk
+from nltk.tokenize import sent_tokenize
+text = "Let us understand the difference between sentence & word tokenizer. 
+It is going to be a simple example."
+sent_tokenize(text)
+      //****  Output ****//
+[
+   "Let us understand the difference between sentence & word tokenizer.", 
+   'It is going to be a simple example.'
+]
+
+(6)
+-------------------Sentence tokenization using regular expressions-----------------
+
+//  Example 1:::::------ IF True --------
+import nltk
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer("[\w']+")
+tokenizer.tokenize("won't is a contraction.")
+tokenizer.tokenize("can't is a contraction.")
+     //****  Output ****//
+   ["won't", 'is', 'a', 'contraction']
+   ["can't", 'is', 'a', 'contraction']
+   
+//  Example 2 ::::: ----- IF True --------
+import nltk
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer('/s+' , gaps = True)
+tokenizer.tokenize("won't is a contraction.")
+     //****  Output ****//
+     ["won't", 'is', 'a', 'contraction']  
+   
+ //  Example 2 ::::: ----- IF False --------
+ import nltk
+from nltk.tokenize import RegexpTokenizer
+tokenizer = RegexpTokenizer('/s+' , gaps = False)
+tokenizer.tokenize("won't is a contraction.")
+    //****  Output ****//
+    [ ]
+       
+       
