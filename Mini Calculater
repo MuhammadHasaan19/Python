@@ -1,3 +1,4 @@
+# Hasaan Calculater
 print("******* Welcome to Python Calculator *******\n")
 a=int(input("Enter the First Number : "))
 b=int(input("Enter the Second Number : "))
@@ -10,8 +11,8 @@ print("Enter 5 Modulus process Start :")
 print("Enter 6 Division process Start :")
 print("Enter 7 Floor Division process Start :")
 print("Enter 0 Exit from the process :\n")
-# Alt + Shift +Down Arrow
-#  Alt + Shift
+
+
 c=input("Enter the Number Folowing Process : \n")
 if c=="1": print("Addition is : ",(a+b))
 elif c=="2":print("Subtraction is : ",(a-b))
