@@ -1,25 +1,150 @@
-# Hasaan Calculater
-print("******* Welcome to Python Calculator *******\n")
-a=int(input("Enter the First Number : "))
-b=int(input("Enter the Second Number : "))
-print("\n")
-print("Enter 1 Addition  process Start :")
-print("Enter 2 Subtraction process Start :")
-print("Enter 3 Multiplication process Start :")
-print("Enter 4 Exponential process Start :")
-print("Enter 5 Modulus process Start :")
-print("Enter 6 Division process Start :")
-print("Enter 7 Floor Division process Start :")
-print("Enter 0 Exit from the process :\n")
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CASIO DS-2B Style Calculator</title>
+  <style>
+    body {
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
+    .calculator {
+      background: #dcdcdc;
+      border-radius: 12px;
+      padding: 20px;
+      width: 300px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border: 2px solid #999;
+    }
 
-c=input("Enter the Number Folowing Process : \n")
-if c=="1": print("Addition is : ",(a+b))
-elif c=="2":print("Subtraction is : ",(a-b))
-elif c=="3":print("Multiplication is : ",(a*b))
-elif c=="4":print("Exponential is :",(a**b))
-elif c=="5":print("Modulus is : ",(a%b))
-elif c=="6":print("Division is : ",(a/b))
-elif c=="7":print("Floor Division is : ",(a//b))
-elif c=="0" : print(exit)
- 
+    .display {
+      background: #f0f0f0;
+      font-size: 2rem;
+      height: 50px;
+      padding: 10px;
+      text-align: right;
+      margin-bottom: 15px;
+      border: 2px solid #999;
+      border-radius: 6px;
+      color: #333;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      height: 50px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #e0e0e0;
+      color: #000;
+      box-shadow: inset 0 -2px 0 #aaa;
+    }
+
+    .gray-btn {
+      background: #bcbcbc;
+    }
+
+    .dark-btn {
+      background: #4d4d4d;
+      color: white;
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div id="display" class="display">0</div>
+    <div class="buttons">
+      <button class="gray-btn" onclick="clearDisplay()">AC</button>
+      <button class="gray-btn" onclick="appendOperator('%')">%</button>
+      <button class="gray-btn" onclick="backspace()">←</button>
+      <button class="dark-btn" onclick="appendOperator('/')">÷</button>
+
+      <button onclick="appendNumber('7')">7</button>
+      <button onclick="appendNumber('8')">8</button>
+      <button onclick="appendNumber('9')">9</button>
+      <button class="dark-btn" onclick="appendOperator('*')">×</button>
+
+      <button onclick="appendNumber('4')">4</button>
+      <button onclick="appendNumber('5')">5</button>
+      <button onclick="appendNumber('6')">6</button>
+      <button class="dark-btn" onclick="appendOperator('-')">-</button>
+
+      <button onclick="appendNumber('1')">1</button>
+      <button onclick="appendNumber('2')">2</button>
+      <button onclick="appendNumber('3')">3</button>
+      <button class="dark-btn" onclick="appendOperator('+')">+</button>
+
+      <button class="wide" onclick="appendNumber('0')">0</button>
+      <button onclick="appendDecimal()">.</button>
+      <button class="dark-btn" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let input = '';
+    const display = document.getElementById('display');
+
+    function appendNumber(num) {
+      if (input === '0') input = '';
+      input += num;
+      updateDisplay();
+    }
+
+    function appendOperator(op) {
+      if (input && !'+-*/%'.includes(input.slice(-1))) {
+        input += op;
+        updateDisplay();
+      }
+    }
+
+    function appendDecimal() {
+      const parts = input.split(/[-+*/]/);
+      const last = parts[parts.length - 1];
+      if (!last.includes('.')) {
+        input += '.';
+        updateDisplay();
+      }
+    }
+
+    function clearDisplay() {
+      input = '';
+      updateDisplay('0');
+    }
+
+    function backspace() {
+      input = input.slice(0, -1);
+      updateDisplay(input || '0');
+    }
+
+    function calculate() {
+      try {
+        input = eval(input).toString();
+        updateDisplay();
+      } catch {
+        updateDisplay('Error');
+      }
+    }
+
+    function updateDisplay(val) {
+      display.innerText = val || input;
+    }
+  </script>
+</body>
+</html>
